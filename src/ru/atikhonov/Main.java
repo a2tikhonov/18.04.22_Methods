@@ -11,14 +11,10 @@ public class Main {
     }
 
     public static void suggestVersion(byte typeOS, short deviceYear) {
-        if (deviceYear > LocalDate.now().getYear()) return;
-        if (typeOS == 1) {
-            if (deviceYear == LocalDate.now().getYear()) System.out.println("Установите версию приложения для Android по ссылке");
-                else System.out.println("Установите облегченную версию приложения для Android по ссылке");
-        } else {
-            if (deviceYear == LocalDate.now().getYear()) System.out.println("Установите версию приложения для iOS по ссылке");
-                else System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-        }
+        if (typeOS == 1 && deviceYear >= LocalDate.now().getYear()) System.out.println("Установите версию приложения для Android по ссылке");
+            else if (typeOS == 1 && deviceYear < LocalDate.now().getYear()) System.out.println("Установите облегченную версию приложения для Android по ссылке");
+        if (typeOS == 0 && deviceYear >= LocalDate.now().getYear()) System.out.println("Установите версию приложения для iOS по ссылке");
+            else if (typeOS == 0 && deviceYear < LocalDate.now().getYear()) System.out.println("Установите облегченную версию приложения для iOS по ссылке");
     }
 
     public static short calcDeliveryDays(short deliveryDistance) {
