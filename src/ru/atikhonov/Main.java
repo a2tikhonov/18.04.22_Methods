@@ -1,5 +1,6 @@
 package ru.atikhonov;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -43,6 +44,28 @@ public class Main {
         }
     }
 
+    public static void calcMonthlyAverage(int[] arr) {
+        printAverage(calcAverage(calcSumOfElements(arr), arr.length));
+    }
+
+    public static int calcSumOfElements(int[] arr) {
+        int sumOfElements = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sumOfElements += arr[i];
+        }
+        return sumOfElements;
+    }
+
+    public static float calcAverage(int sumOfElements, int numberOfElements) {
+        return (float)sumOfElements/numberOfElements;
+    }
+
+    public static void printAverage(float averageNumber) {
+        System.out.println("Средняя сумма трат за месяц составила " +
+                new DecimalFormat("###,###.##").format(averageNumber) +
+                " рублей.");
+    }
+
     public static void main(String[] args) {
         //Задание 1
         short year = 3308;
@@ -62,5 +85,16 @@ public class Main {
         int[] arr = {3, 2, 1, 6, 5};
         reverseArray(arr);
         System.out.println(Arrays.toString(arr));
+        //Задание 6
+        calcMonthlyAverage(generateRandomArray());
+    }
+
+    public static int[] generateRandomArray() {
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
     }
 }
